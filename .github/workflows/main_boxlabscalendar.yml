@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-          DATABASE_URL: databaseurl
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     
 
