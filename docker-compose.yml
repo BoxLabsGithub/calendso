@@ -2,15 +2,27 @@
 # starts a postgres instance on port 5450 to use as a local db
 version: "3.6"
 services:
-  postgres:
-    image: postgres:13
-    ports:
-      - "5450:5432" # expose pg on port 5450 to not collide with pg from elswhere
-    restart: always
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: ""
-      POSTGRES_HOST_AUTH_METHOD: trust
-volumes:
-  db_data:
+  boxschedule:
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          - BASE_URL=${BASE_URL}
+          - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
+      image: boxschedule
+      restart: always
+      ports:
+        - 3000:3000
+      env_file: .env
+#   postgres:
+#     image: postgres:13
+#     ports:
+#       - "5450:5432" # expose pg on port 5450 to not collide with pg from elswhere
+#     restart: always
+#     volumes:
+#       - db_data:/var/lib/postgresql/data
+#     environment:
+#       POSTGRES_PASSWORD: ""
+#       POSTGRES_HOST_AUTH_METHOD: trust
+# volumes:
+#   db_data:
