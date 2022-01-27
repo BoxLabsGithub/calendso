@@ -34,3 +34,6 @@ COPY  scripts scripts
 
 EXPOSE 3000
 CMD ["npm","start"]
+
+
+# docker buildx build --build-arg BASE_URL=http://localhost:3000 --build-arg NEXT_PUBLIC_APP_URL=http://localhost:3000 --platform linux/amd64 .
